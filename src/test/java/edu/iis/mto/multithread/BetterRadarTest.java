@@ -5,10 +5,14 @@ import static org.mockito.Mockito.verify;
 
 import java.util.concurrent.Executor;
 
+import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mockito;
 public class BetterRadarTest {
+	@Rule
+	public RepeatRule repeatRule = new RepeatRule();
 	@Test
+	@Repeat( times = 1000 )
 	public void launchTenPatriotOnceWhenNoticesAScudMissle() {
 		PatriotBattery batteryMock = mock(PatriotBattery.class);
 		
@@ -26,5 +30,14 @@ public class BetterRadarTest {
 		BetterRadar radar = new BetterRadar(batteryMock, exec);
 		radar.notice(new Scud());
 		verify(batteryMock, Mockito.times(10)).launchPatriot();
+		System.out.println("cos robie");
 	}
 }
+
+
+
+
+
+
+ 
+
